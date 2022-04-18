@@ -1,0 +1,21 @@
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+          ['PELAYANAN', 'PUAS', 'CUKUP', 'KURANG'],
+          <?php
+            $query="SELECT * FROM suara  A JOIN pelayanan B on A.id_pl=B.id_pl GROUP BY nama_pl ";
+            $res=mysqli_query($conn,$query);
+            while($data=mysqli_fetch_array($res)){
+              $nama_pl=$data['nama_pl'];
+           ?>
+           ['<?php echo $nama_pl;?>',12,16,19],   
+           <?php   
+            }
+           ?> 
+        ]);
+
+    </script>
